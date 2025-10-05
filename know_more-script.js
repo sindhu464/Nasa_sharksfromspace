@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!modelName) return;
         loaderElement.classList.add('visible');
         if (currentModel) { scene.remove(currentModel); }
-        const modelPath = `models/${modelName}.glb`;
+        const modelPath = `${modelName}.glb`;
         loader.load(modelPath, (gltf) => {
             currentModel = gltf.scene;
             scene.add(currentModel);
@@ -107,4 +107,5 @@ document.addEventListener('DOMContentLoaded', () => {
     onResize();
     loadModel('shark_tag'); // Load the default model
     animate();
+
 });
