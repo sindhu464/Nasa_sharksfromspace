@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Interactive Ocean Scene</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* All CSS is included here */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #020617; /* Dark blue fallback color */
+        }
+        #background-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -2;
+            filter: brightness(0.7);
+        }
+        #three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        #loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 10px;
+            transition: opacity 0.5s ease-out;
+        }
+        .fade-out {
+            opacity: 0;
+        }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <video autoplay muted loop playsinline id="background-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-sun-rays-in-the-deep-blue-sea-21833-large.mp4" type="video/mp4">
+    </video>
+
+    <canvas id="three-canvas"></canvas>
+
+    <div id="loader">Loading 3D Model...</div>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // --- Basic Setup ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({
+            canvas: document.querySelector('#three-canvas'),
+            antialias: true,
+            alpha: true // Make canvas transparent to see the video behind it
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0); // Transparent background
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+        // --- Lighting ---
+        const ambientLight = new THREE.AmbientLight(0xadd8e6, 2.0); // Light blue to simulate water
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5); // Simulates sun from above
+        directionalLight.position.set(0, 20, 10);
+        scene.add(directionalLight);
+        
+        // --- Camera Controls ---
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.minDistance = 5;
+        controls.maxDistance = 50;
+        camera.position.set(0, 4, 15);
+
+        // --- Load the 3D Shark Model ---
+        let sharkModel;
+        const loader = new GLTFLoader();
+        const infoPanel = document.getElementById('loader');
+
+        loader.load(
+            // Loading the model directly from a reliable URL
+            'https://storage.googleapis.com/static.sketchfab.com/models/great_white_shark-c0199180-038b55403554?q=80&w=2535&auto=format&fit=crop',
+            (gltf) => {
+                sharkModel = gltf.scene;
+                sharkModel.scale.set(3, 3, 3);
+                scene.add(sharkModel);
+                infoPanel.classList.add('fade-out'); // Hide loader on success
+            },
+            undefined,
+            (error) => {
+                console.error('Error loading 3D model.', error);
+                infoPanel.innerHTML = '<h1>Error Loading 3D Model</h1>';
+            }
+        );
+
+        // --- Animate the Scene ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (sharkModel) {
+                // Animate the shark swimming in a slow circle
+                const time = performance.now() * 0.0003;
+                sharkModel.position.x = Math.sin(time) * 10;
+                sharkModel.position.z = Math.cos(time) * 10;
+                sharkModel.rotation.y = time + Math.PI;
+
+                // Make the controls' target follow the shark
+                controls.target.lerp(sharkModel.position, 0.1);
+            }
+            
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resizing
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

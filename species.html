@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shark Species - Ocean Track</title>
+    <link rel="stylesheet" href="species-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="explore.html" class="logo-link">
+            <div class="logo">
+            <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 30 Q30 10, 50 30 T90 30" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <path d="M10 50 Q30 30, 50 50 T90 50" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <path d="M10 70 Q30 50, 50 70 T90 70" stroke="white" stroke-width="8" stroke-linecap="round"/>
+</svg>
+                <span>OCEAN TRACK</span>
+            </div>
+        </a>
+        <nav class="main-nav">
+            <a href="tracker.html">Track in Real Time</a>
+            <a href="learn.html">Learn & Explore</a>
+            <a href="explore.html">Home</a>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="species-hero">
+            <h1>Shark Species</h1>
+            <p>An overview of the diverse and fascinating sharks we study and protect.</p>
+        </section>
+
+        <section class="filter-section">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="apex">Predators</button>
+                <button class="filter-btn" data-filter="filter-feeder">Feeders</button>
+                <button class="filter-btn" data-filter="deep-sea">Deep Sea</button>
+            </div>
+        </section>
+
+        <section class="species-grid-section">
+            <div class="species-grid">
+                <div class="species-card" data-category="apex">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.dBZ8783P_6xY7DbNKUxQhwHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Great White Shark">
+                    <div class="card-content">
+                        <h3>Great White Shark</h3>
+                        <p class="scientific-name">Carcharodon carcharias</p>
+                        <p class="description">The world's largest predatory fish, famous for its size and power. Found in cool, coastal waters worldwide.</p>
+                        <div class="stats">
+                            <div><i class="fas fa-ruler-vertical"></i> Up to 6m</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="species-card" data-category="apex">
+                    <img src="https://images8.alphacoders.com/379/thumb-1920-379012.jpg" alt="Tiger Shark">
+                    <div class="card-content">
+                        <h3>Tiger Shark</h3>
+                        <p class="scientific-name">Galeocerdo cuvier</p>
+                        <p class="description">A formidable macropredator with a very broad diet, named for the dark, vertical stripes found on juveniles.</p>
+                        <div class="stats">
+                            <div><i class="fas fa-ruler-vertical"></i> Up to 5m</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="species-card" data-category="filter-feeder">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/025/496/244/small_2x/deep-below-majestic-sea-life-in-tropical-reef-adventure-generated-by-ai-photo.jpg" alt="Whale Shark">
+                    <div class="card-content">
+                        <h3>Whale Shark</h3>
+                        <p class="scientific-name">Rhincodon typus</p>
+                        <p class="description">The largest known living fish. This gentle giant is a filter-feeder, primarily eating plankton and small fish.</p>
+                        <div class="stats">
+                            <div><i class="fas fa-ruler-vertical"></i> Up to 18m</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="species-card" data-category="filter-feeder">
+                    <img src="https://i.pinimg.com/originals/e9/74/24/e974240d9d14dc0a23c7570a543499c0.jpg" alt="Basking Shark">
+                    <div class="card-content">
+                        <h3>Basking Shark</h3>
+                        <p class="scientific-name">Cetorhinus maximus</p>
+                        <p class="description">The second-largest living shark. It is a slow-moving filter-feeder, often seen swimming with its enormous mouth open.</p>
+                        <div class="stats">
+                            <div><i class="fas fa-ruler-vertical"></i> Up to 12m</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="species-card" data-category="apex">
+                    <img src="https://www.sharktruth.com/wp-content/uploads/2024/02/Hammerhead-Shark.jpeg" alt="Hammerhead Shark">
+                    <div class="card-content">
+                        <h3>Hammerhead Shark</h3>
+                        <p class="scientific-name">Sphyrnidae</p>
+                        <p class="description">Instantly recognizable by their unique "hammer" shaped head (cephalofoil), which gives them superior sensory perception.</p>
+                        <div class="stats">
+                            <div><i class="fas fa-ruler-vertical"></i> Up to 6m</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="species-card" data-category="apex">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.voemfwSTFcysFB3s6JfJ8wHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Blue Shark">
+                    <div class="card-content">
+                        <h3>Blue Shark</h3>
+                        <p class="scientific-name">Prionace glauca</p>
+                        <p class="description">A slim, elegant shark with a distinct indigo blue color on its back. They are found in deep waters in temperate and tropical oceans.</p>
+                        <div class="stats">
+                            <div><i class="fas fa-ruler-vertical"></i> Up to 3.8m</div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="species-card" data-category="deep-sea">
+                    <img src="https://animalhype.com/wp-content/uploads/2019/08/goblin_shark_facts.jpg" alt="Goblin Shark">
+                    <div class="card-content">
+                        <h3>Goblin Shark</h3>
+                        <p class="scientific-name">Mitsukurina owstoni</p>
+                        <p class="description">A rare deep-sea shark, often called a "living fossil," with a distinctive elongated snout and highly protrusible jaws.</p>
+                        <div class="stats">
+                            <div><i class="fas fa-ruler-vertical"></i> Up to 4m</div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="species-card" data-category="apex">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.Uqk7IGhq1d0M6RnOP1Us5gHaEx?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Bull Shark">
+                    <div class="card-content">
+                        <h3>Bull Shark</h3>
+                        <p class="scientific-name">Carcharhinus leucas</p>
+                        <p class="description">Known for its aggressive nature and ability to thrive in both saltwater and freshwater, often traveling far up rivers.</p>
+                        <div class="stats">
+                            <div><i class="fas fa-ruler-vertical"></i> Up to 3.4m</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="species-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whale Migration & Behavior Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0d1117;
+            --card-background: #161b22;
+            --text-color: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+            --accent-color: #58a6ff;
+            --glow-color: rgba(88, 166, 255, 0.5);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0d1117, #1a222e, #0d1117, #2c3a4b);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #fff;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -1px;
+            background: -webkit-linear-gradient(45deg, #fff, #a3c9ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 15px auto 0;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--card-background);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px var(--glow-color);
+            border-color: var(--accent-color);
+        }
+
+        .card-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-content {
+            padding: 25px 30px;
+            flex-grow: 1;
+        }
+
+        .card-content h3 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .card-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .interactive-term {
+            color: var(--accent-color);
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 1px dashed var(--accent-color);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .interactive-term:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: var(--card-background);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: slideIn 0.3s ease-out;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .modal-header h2 { margin: 0; color: var(--accent-color); }
+        .close-button { color: var(--text-muted); font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.2s; }
+        .close-button:hover { color: #fff; }
+
+        @keyframes slideIn {
+            from { transform: translateY(-30px) scale(0.95); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.4s;
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.4s;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-lightbox:hover { color: #bbb; }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <a href="tracker.html" class="back-button">← Back to Tracker</a>
+            <h1>Whale Analysis Dashboard</h1>
+            <p>Exploring the behavior and habitat of cetaceans using advanced satellite <span class="interactive-term" data-term="Telemetry">telemetry</span> and environmental data.</p>
+        </header>
+
+        <div class="dashboard-grid">
+
+            <div class="card">
+                <img src="https://image2url.com/images/1759556590192-aa32577f-99d9-42ac-b5ce-f03d2b6cb6ae.png" alt="NARW Collision Risk Map" class="card-image">
+                <div class="card-content">
+                    <h3>NARW Collision & Entanglement Risk</h3>
+                    <p>
+                        This <span class="interactive-term" data-term="DSS">Decision Support System (DSS)</span> forecasts North Atlantic Right Whale habitats in the Gulf of St. Lawrence. It uniquely combines whale predictions with vessel traffic and fishing data to identify potential collision and entanglement risks. The map displays these threats, with red indicating high collision risk and yellow showing a high likelihood of whale presence.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="definition-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-term"></h2>
+                <span class="close-button">×</span>
+            </div>
+            <p id="modal-definition"></p>
+        </div>
+    </div>
+
+    <div id="image-lightbox" class="image-lightbox">
+        <span class="close-lightbox">×</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- On-Scroll Animation Logic ---
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // --- Interactive Glossary Modal Logic ---
+            const definitions = {
+                'Telemetry': { title: 'Telemetry', text: 'The process of collecting data from remote or inaccessible points and transmitting it to receiving equipment for monitoring. In this context, satellite tags on whales transmit location, depth, and other data.' },
+                'SST': { title: 'SST (Sea Surface Temperature)', text: 'The water temperature at the ocean surface. It is a critical variable for understanding ocean currents, weather patterns, and the distribution of marine life, as many species have specific temperature preferences.' },
+                'Biologging': { title: 'Biologging', text: 'The use of miniaturized electronic tags attached to animals to record data about their movement, behavior, physiology, and environment. These tags can include GPS, accelerometers, and hydrophones.' },
+                'Spectrogram': { title: 'Spectrogram', text: 'A visual representation of the spectrum of frequencies of a signal as it varies with time. For whale calls, it shows the pitch (frequency) and loudness (intensity) of their songs, allowing scientists to identify species and analyze communication patterns.' },
+                'Chlorophyll-a': { title: 'Chlorophyll-a', text: 'The primary photosynthetic pigment found in phytoplankton. Satellite sensors can measure its concentration from space, indicating areas with high biological productivity that form the base of the marine food web.' }
+            };
+            const defModal = document.getElementById('definition-modal');
+            const modalTerm = document.getElementById('modal-term');
+            const modalDefinition = document.getElementById('modal-definition');
+            const closeDefButton = defModal.querySelector('.close-button');
+
+            document.querySelectorAll('.interactive-term').forEach(termElement => {
+                termElement.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const termKey = termElement.dataset.term;
+                    const defData = definitions[termKey];
+                    if (defData) {
+                        modalTerm.textContent = defData.title;
+                        modalDefinition.textContent = defData.text;
+                        defModal.style.display = 'flex';
+                    }
+                });
+            });
+
+            const closeDefModal = () => { defModal.style.display = 'none'; };
+            closeDefButton.addEventListener('click', closeDefModal);
+            defModal.addEventListener('click', (event) => { if (event.target === defModal) { closeDefModal(); } });
+
+            // --- Image Lightbox Logic ---
+            const imageLightbox = document.getElementById('image-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeLightboxBtn = document.querySelector('.close-lightbox');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('interactive-term')) {
+                        return;
+                    }
+
+                    const cardImage = card.querySelector('.card-image');
+                    if (cardImage) {
+                        imageLightbox.style.display = 'block';
+                        lightboxImg.src = cardImage.src;
+                        lightboxImg.alt = cardImage.alt;
+                    }
+                });
+            });
+
+            const closeLightbox = () => { imageLightbox.style.display = 'none'; };
+            closeLightboxBtn.addEventListener('click', closeLightbox);
+            imageLightbox.addEventListener('click', (event) => {
+                if (event.target === imageLightbox) { closeLightbox(); }
+            });
+
+            lightboxImg.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+Shark ID,Time (GMT),Latitude (°N),Longitude (°E),Temperature (°C),SWOT Eddy (Presence/Type),PACE Chlorophyll (μg/L),Hydra-Tag Data (Feeding Event/Prey)
+Mako-1,04:00,25.12,-77.54,24.5,Warm-Core,1.8,"YES (Tuna)"
+White-2,04:00,38.91,-74.22,19.3,Shear Zone,0.9,NO
+Tiger-3,04:00,21.05,-86.99,28.1,NONE,2.1,"YES (Sea Turtle)"
+Bull-4,04:00,29.87,-90.11,22.4,Coastal Upwelling,3.5,"YES (Small Fish)"
+Hammerhead-5,04:00,18.52,-65.21,27.6,Warm-Core,2.5,NO
+Great-White-6,04:00,33.98,-118.45,16.8,Cold-Core,0.4,NO

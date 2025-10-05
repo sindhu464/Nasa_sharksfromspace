@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Viewer - Ocean Track</title>
+    <link rel="stylesheet" href="3d-viewer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        { "imports": { "three": "https://unpkg.com/three@0.158.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/" } }
+    </script>
+</head>
+<body>
+    <canvas id="three-canvas"></canvas>
+
+    <div class="ui-panel top-panel">
+        <h1 id="top-panel-title">LIVE DATA MONITORING</h1>
+        <p class="sub-info">DEPTH: <span id="env-depth">--</span>m <span class="divider">•</span> TEMP: <span id="env-temp">--</span>°C <span class="divider">•</span> SALINITY: <span id="env-salinity">--</span> PSU</p>
+    </div>
+
+    <div class="ui-panel left-panel">
+        <div class="data-section">
+            <h3>PRIMARY SUBJECT VITALS</h3>
+            <p>SPECIES: <span id="vitals-species">Loading...</span></p>
+            <p>LENGTH: <span id="vitals-length">--</span> meters</p>
+            <p>WEIGHT: <span id="vitals-weight">--</span> kg</p>
+            <p>AGE: <span id="vitals-age">--</span> years</p>
+        </div>
+        <div class="data-section">
+            <h3>ACTIVITY LOG</h3>
+            <p>HEADING: <span id="log-heading">--</span></p>
+            <p>STATUS: <span id="log-status">--</span></p>
+            <p>CURRENTLY EATING: <span id="log-eating">--</span></p>
+            <p>LAST MEAL: <span id="log-last-meal">--</span></p>
+        </div>
+        <div class="data-section">
+            <h3>SYSTEM INTEGRITY</h3>
+            <p>TAG SIGNAL:</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="tag-signal-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-panel right-panel">
+        <div class="data-section">
+            <h3>PREDICTIVE TRAJECTORY</h3>
+            <div class="image-container">
+                <img src="https://image2url.com/images/1759556046829-b675b8a3-e082-41f0-b16e-68e72f213ff6.png" alt="Predictive Trajectory Map">
+            </div>
+        </div>
+        <div class="data-section">
+            <h3>BEHAVIORAL ANALYSIS</h3>
+            <div class="image-container">
+                <img src="https://image2url.com/images/1759555517775-9f2454ca-738c-425b-840c-21e89b485dd4.png" alt="Behavioral Analysis Chart">
+            </div>
+        </div>
+        <div class="data-section">
+            <h3>ENVIRONMENTAL CORRELATION</h3>
+            <div class="image-container">
+                <img src="https://image2url.com/images/1759555453502-a5ea91b3-8b4e-4e35-82a9-d6f1899de708.png" alt="Environmental Correlation Graph">
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="3d-viewer.js"></script>
+</body>
+</html>

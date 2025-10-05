@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-77.5, 25.1]
+      },
+      "properties": {
+        "type": "Warm-Core"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-90.1, 29.9]
+      },
+      "properties": {
+        "type": "Coastal Upwelling"
+      }
+    }
+  ]
+}

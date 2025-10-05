@@ -1,0 +1,63 @@
+/* Import Google Font for the tech feel */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Share Tech Mono', monospace; /* Thematic font */
+}
+
+canvas {
+    display: block;
+}
+
+#info {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    color: #00e5ff; /* Glowing Cyan */
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.7), 
+                 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.sonar-hud h1 {
+    font-size: 3em;
+    letter-spacing: 0.5em;
+    margin: 0 0 15px 0;
+}
+
+/* Make brackets less bright than the text */
+.sonar-hud h1 span {
+    opacity: 0.6;
+}
+
+.sonar-hud a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.3em;
+    padding: 8px 15px;
+    border: 1px solid rgba(8, 8, 8, 0.5);
+    border-radius: 4px;
+    transition: background-color 0.3s, text-shadow 0.3s;
+    animation: pulse 2.5s infinite;
+}
+
+.sonar-hud a:hover {
+    background-color: rgba(0, 229, 255, 0.15);
+    text-shadow: 0 0 8px #fff;
+}
+
+.sonar-hud p {
+    margin-top: 20px;
+    font-size: 1em;
+    opacity: 0.7;
+}
+
+/* Pulse animation for the link */
+@keyframes pulse {
+    0% { box-shadow: 0 0 5px rgba(0, 229, 255, 0.3); }
+    50% { box-shadow: 0 0 15px rgba(12, 12, 12, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(0, 229, 255, 0.3); }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn & Explore Sharks - Ocean Track</title>
+    <link rel="stylesheet" href="learn-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="explore.html" class="logo-link">
+            <div class="logo">
+            <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 30 Q30 10, 50 30 T90 30" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <path d="M10 50 Q30 30, 50 50 T90 50" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <path d="M10 70 Q30 50, 50 70 T90 70" stroke="white" stroke-width="8" stroke-linecap="round"/>
+</svg>
+                <span>OCEAN TRACK</span>
+            </div>
+        </a>
+        <nav class="main-nav">
+            <a href="tracker.html">Track in Real Time</a>
+            <a href="hardware.html">Hardware Tag</a>
+            <a href="explore.html">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-great-white-shark-at-the-bottom-of-the-sea-23676-large.mp4" type="video/mp4">
+            </video>
+            <div class="hero-content">
+                <h1>Dive Deeper:<br>The World of Sharks</h1>
+                <p>Uncover the mysteries, marvel at the adaptations, and understand the vital role of these incredible ocean guardians.</p>
+            </div>
+        </section>
+
+        <section class="info-grid-section">
+            <div class="grid-container">
+                <div class="info-card reveal-on-scroll" data-delay="0"><div class="card-icon" aria-hidden="true">🦈</div><h3>Shark Species</h3><p>Discover the incredible diversity from the smallest dwarf lanternshark to the largest whale shark.</p><a href="species.html" class="card-link">View Species</a></div>
+                <div class="info-card reveal-on-scroll" data-delay="100"><div class="card-icon" aria-hidden="true">🌊</div><h3>Habitats & Migration</h3><p>Track their incredible journeys across vast oceans and explore their preferred environments.</p><a href="tracker.html" class="card-link">Explore Maps</a></div>
+                <div class="info-card reveal-on-scroll" data-delay="200"><div class="card-icon" aria-hidden="true">🧬</div><h3>Anatomy & Adaptations</h3><p>Learn about their unique senses, powerful bodies, and evolutionary marvels.</p><a href="#" class="card-link">See Anatomy</a></div>
+                <div class="info-card reveal-on-scroll" data-delay="300"><div class="card-icon" aria-hidden="true">⚖️</div><h3>Role in Ecosystem</h3><p>Understand why sharks are vital apex predators for maintaining ocean health.</p><a href="#" class="card-link">Read More</a></div>
+                <div class="info-card reveal-on-scroll" data-delay="400"><div class="card-icon" aria-hidden="true">🚫</div><h3>Conservation Efforts</h3><p>Learn about the threats they face and how you can contribute to their protection.</p><a href="#" class="card-link">Get Involved</a></div>
+                <div class="info-card reveal-on-scroll" data-delay="500"><div class="card-icon" aria-hidden="true">🔬</div><h3>Research & Science</h3><p>Explore the latest scientific discoveries and ongoing studies about sharks.</p><a href="#" class="card-link">Latest Studies</a></div>
+            </div>
+        </section>
+
+        <section class="featured-content-section">
+            <div class="featured-card featured-1 reveal-on-scroll" data-delay="0">
+                <div class="card-overlay">
+                    <h2>The Great White</h2>
+                    <p>The ocean's most iconic predator. Explore its hunting strategies and incredible power.</p>
+                    <a href="#" class="cta-button">Discover More</a>
+                </div>
+            </div>
+            <div class="featured-card featured-2 reveal-on-scroll" data-delay="100">
+                <div class="card-overlay">
+                    <h2>Tiger Shark</h2>
+                    <p>A formidable scavenger with a distinctive striped pattern and a versatile diet.</p>
+                    <a href="#" class="cta-button">Explore Behavior</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="learn-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware - Ocean Track</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --card-bg: rgba(12, 13, 20, 0.75);
+            --card-border: rgba(255, 255, 255, 0.15);
+            --accent-color: #3b82f6;
+            --text-light: #f0f6fc;
+            --text-muted: #9ba8b8;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-light);
+            height: 100%;
+            overflow: hidden;
+            
+            background-image: url('http://cdn.wallpapersafari.com/9/64/uj9Xbv.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- Header --- */
+        .site-header { width: 100%; max-width: 1400px; margin: 0 auto; padding: 25px 30px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; position: absolute; top: 0; left: 0; right: 0; z-index: 100; }
+        .logo-link { text-decoration: none; }
+        .logo { display: flex; align-items: center; gap: 12px; font-size: 1.1rem; font-weight: 700; letter-spacing: 1px; color: #000; /* Changed logo color to black */ }
+        .logo svg path { stroke: #000; } /* Change SVG stroke color */
+        
+        .main-nav { display: flex; gap: 40px; }
+        
+        /* === THIS IS THE CHANGED PART === */
+        .main-nav a { 
+            text-decoration: none; 
+            color: #000; /* Changed to black */
+            font-size: 0.9rem; 
+            font-weight: 700; /* Made it bolder for visibility */
+            transition: color 0.3s ease; 
+        }
+        .main-nav a:hover { 
+            color: #555; /* Dark grey for hover */
+        }
+        .main-nav a.active { 
+            color: var(--accent-color); 
+            font-weight: 700; 
+        }
+        /* ================================ */
+
+        /* --- Floating Cards Layout --- */
+        .content-container { display: flex; justify-content: center; align-items: center; gap: 40px; height: 100vh; padding: 20px; box-sizing: border-box; }
+
+        @keyframes card-fade-in {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .choice-card { position: relative; width: 400px; height: 500px; border-radius: 15px; overflow: hidden; background: var(--card-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--card-border); box-shadow: 0 10px 40px rgba(0,0,0,0.3); transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer; opacity: 0; animation: card-fade-in 0.8s ease-out forwards; }
+        #tag-card { animation-delay: 0.2s; }
+        .choice-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .card-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s ease, opacity 0.6s ease; opacity: 0.3; }
+        .choice-card:hover .card-background { transform: scale(1.1); opacity: 0.5; }
+        .card-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px; background: linear-gradient(to top, rgba(12, 13, 20, 0.95), transparent); text-align: center; }
+        .card-overlay h2 { font-size: 2rem; font-weight: 900; margin: 0 0 10px; }
+        .card-overlay p { font-size: 1rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 20px; }
+        .card-button { display: inline-block; background: var(--accent-color); color: #fff; text-decoration: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; transition: all 0.3s ease; }
+        .card-button:hover { background-color: #60a5fa; transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a href="explore.html" class="logo-link">
+            <div class="logo">
+                <svg width="28" height="28" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 40 Q35 15, 60 40 T110 40" stroke="white" stroke-width="8" stroke-linecap="round"/><path d="M10 60 Q35 35, 60 60 T110 60" stroke="white" stroke-width="8" stroke-linecap="round"/></svg>
+                <span>OCEAN TRACK</span>
+            </div>
+        </a>
+        <nav class="main-nav">
+            <a href="tracker.html">Track in Real Time</a>
+            <a href="learn.html">Learn & Explore</a>
+            <a href="hardware.html" class="active">Hardware Tag</a>
+            <a href="explore.html">Home</a>
+        </nav>
+    </header>
+
+    <main class="content-container">
+        <div class="choice-card" id="video-card">
+            <div class="card-background" style="background-image: url('https://polartag.org/wp-content/uploads/2020/09/Whale21-4207.jpg');"></div>
+            <div class="card-overlay">
+                <h2>SharkScout Tag</h2>
+                <p>Know more about the conceptual tag and its functions.</p>
+                <a href="know_more.html" class="card-button">Know More</a>
+            </div>
+        </div>
+
+        <div class="choice-card" id="tag-card">
+            <div class="card-background" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop');"></div>
+            <div class="card-overlay">
+                <h2>Explore the Hardware</h2>
+                <p>Take a deep dive into the technology behind the 'SharkScout Tag' and its groundbreaking features.</p>
+                <a href="technology.html" class="card-button">View Tag Details</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

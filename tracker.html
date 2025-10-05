@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCEAN TRACK</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="tracker.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="map-container"></div>
+    <div class="floating-ui top-center">
+        <button class="ui-button">Latest pings</button>
+    </div>
+
+    <div class="floating-ui bottom-center">
+        <div class="view-switcher">
+            <button id="map-view-btn" class="ui-button active">Map View</button>
+            <button id="list-view-btn" class="ui-button">List View</button>
+        </div>
+    </div>
+    
+    <aside id="list-view-panel" class="list-view-panel">
+        <div class="list-header">
+            <h3>All Active Animals</h3>
+            <select id="species-filter">
+                <option value="all">All Species</option>
+                <option value="white">Great White</option>
+                <option value="tiger">Tiger Shark</option>
+                <option value="whale">Whale</option> </select>
+        </div>
+        <ul id="shark-list" class="shark-list">
+        </ul>
+    </aside>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="tracker.js"></script>
+
+</body>
+</html>
