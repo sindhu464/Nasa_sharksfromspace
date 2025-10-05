@@ -106,7 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loader = new GLTFLoader();
     loader.load(
-        `models/${modelId}.glb`,
+        // CORRECTED PATH: Removed "models/" prefix to load from the root directory.
+        `${modelId}.glb`,
+        
         (gltf) => {
             const model = gltf.scene;
             scene.add(model);
@@ -128,8 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         undefined,
         (error) => {
+            // UPDATED ERROR MESSAGE: This is more helpful for the current setup.
             const errorPanel = document.querySelector('.top-panel');
-            errorPanel.innerHTML = `<h1>Error Loading 3D Model</h1><p>Ensure 'models/${modelId}.glb' exists and you are using Live Server.</p>`;
+            errorPanel.innerHTML = `<h1>Error Loading 3D Model</h1><p>Ensure '${modelId}.glb' exists in the main project directory.</p>`;
         }
     );
 
